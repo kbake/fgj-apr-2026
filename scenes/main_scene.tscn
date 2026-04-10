@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cduh87h5i6awq"]
+
+[ext_resource type="Script" uid="uid://ik1fgmca3ge7" path="res://scripts/main_scene.gd" id="1_w2twt"]
+
+[node name="MainScene" type="Node2D" unique_id=2031746657]
+script = ExtResource("1_w2twt")
+
+[node name="Menu" type="Control" parent="." unique_id=1993644529]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="Menu" unique_id=1727776027]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 86.0
+offset_right = 334.0
+offset_bottom = 117.0
+text = "Start"
+
+[connection signal="pressed" from="Menu/Button" to="." method="_on_button_pressed"]
