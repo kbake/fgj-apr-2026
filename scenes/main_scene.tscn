@@ -17,6 +17,17 @@ offset_left = 288.0
 offset_top = 86.0
 offset_right = 334.0
 offset_bottom = 117.0
-text = "Start"
+text = "Start (traditional 2d)"
+
+[node name="Button2" type="Button" parent="Menu" unique_id=819083741]
+layout_mode = 0
+offset_left = 289.0
+offset_top = 136.0
+offset_right = 335.0
+offset_bottom = 167.0
+text = "Start (top-down)
+"
 
 [connection signal="pressed" from="Menu/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/Button2" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Menu/Button2" to="." method="_on_button_2_pressed"]
