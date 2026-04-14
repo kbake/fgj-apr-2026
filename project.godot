@@ -18,11 +18,16 @@ config/icon="res://icon.svg"
 [autoload]
 
 SyncManager="*uid://cea4ncygrhkqy"
+SyncDebugger="*uid://df17tgntgv35p"
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-rollback-netcode/plugin.cfg")
 
 [input]
 

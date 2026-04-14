@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bfvf1yu2hyq0p"]
+
+[ext_resource type="Script" uid="uid://lpbbsnaxu88r" path="res://scenes/online_panel.gd" id="1_h1jhj"]
+
+[node name="OnlinePanel" type="Node2D" unique_id=1416696677]
+script = ExtResource("1_h1jhj")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=838381742]
+
+[node name="ConnectionPanel" type="PanelContainer" parent="CanvasLayer" unique_id=1706618446]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.0
+offset_top = -52.0
+offset_right = 121.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/ConnectionPanel" unique_id=758288915]
+layout_mode = 2
+columns = 2
+
+[node name="HostLabel" type="Label" parent="CanvasLayer/ConnectionPanel/GridContainer" unique_id=846388526]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Host:"
+
+[node name="HostField" type="LineEdit" parent="CanvasLayer/ConnectionPanel/GridContainer" unique_id=212964145]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "127.0.0.1"
+
+[node name="PortLabel" type="Label" parent="CanvasLayer/ConnectionPanel/GridContainer" unique_id=656443471]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Port:"
+
+[node name="PortField" type="LineEdit" parent="CanvasLayer/ConnectionPanel/GridContainer" unique_id=1988886618]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "9999"
+
+[node name="ServerButton" type="Button" parent="CanvasLayer/ConnectionPanel/GridContainer" unique_id=1103880692]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Server"
+
+[node name="ClientButton" type="Button" parent="CanvasLayer/ConnectionPanel/GridContainer" unique_id=806935829]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Client"
+
+[node name="MessageLabel" type="Label" parent="CanvasLayer" unique_id=1385134155]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+
+[node name="ResetButton" type="Button" parent="CanvasLayer" unique_id=111721825]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -51.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Reset"
+
+[node name="SyncLostLabel" type="Label" parent="CanvasLayer" unique_id=1641059422]
+visible = false
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -128.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Regaining sync..."
+
+[connection signal="pressed" from="CanvasLayer/ConnectionPanel/GridContainer/ServerButton" to="." method="_on_server_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ConnectionPanel/GridContainer/ClientButton" to="." method="_on_client_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_reset_button_pressed"]

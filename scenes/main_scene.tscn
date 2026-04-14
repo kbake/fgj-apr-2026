@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://cduh87h5i6awq"]
 
 [ext_resource type="Script" uid="uid://ik1fgmca3ge7" path="res://scripts/main_scene.gd" id="1_w2twt"]
+[ext_resource type="PackedScene" uid="uid://bfvf1yu2hyq0p" path="res://scenes/online_panel.tscn" id="2_pw63i"]
+[ext_resource type="PackedScene" uid="uid://h3jbcwrb2te" path="res://scenes/player.tscn" id="3_7ykc4"]
 
 [node name="MainScene" type="Node2D" unique_id=2031746657]
 script = ExtResource("1_w2twt")
@@ -27,6 +29,14 @@ offset_right = 335.0
 offset_bottom = 167.0
 text = "Start (top-down)
 "
+
+[node name="OnlinePanel" parent="." unique_id=1416696677 instance=ExtResource("2_pw63i")]
+
+[node name="ServerPlayer" parent="." unique_id=2001405395 instance=ExtResource("3_7ykc4")]
+position = Vector2(192, 336)
+
+[node name="ClientPlayer" parent="." unique_id=1519462208 instance=ExtResource("3_7ykc4")]
+position = Vector2(897, 344)
 
 [connection signal="pressed" from="Menu/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Menu/Button2" to="." method="_on_button_2_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://buku1ui5ucb0l"]
 
-[ext_resource type="Texture2D" uid="uid://b684wx4o03h5w" path="res://assets/art/Arena.png" id="1_ovnag"]
+[ext_resource type="Texture2D" uid="uid://m34the0eatex" path="res://assets/art/Arena.png" id="1_ovnag"]
 [ext_resource type="PackedScene" uid="uid://h3jbcwrb2te" path="res://scenes/player.tscn" id="1_x35hh"]
 
 [node name="Stage" type="Node2D" unique_id=1486471098]
@@ -27,8 +27,8 @@ position = Vector2(573.9062, 325.34378)
 scale = Vector2(0.8985841, 0.9101562)
 texture = ExtResource("1_ovnag")
 
-[node name="Player1" parent="." unique_id=2001405395 instance=ExtResource("1_x35hh")]
+[node name="ServerPlayer" parent="." unique_id=2001405395 instance=ExtResource("1_x35hh")]
 position = Vector2(565, 409)
 
-[node name="Player2" parent="." unique_id=243254048 instance=ExtResource("1_x35hh")]
+[node name="ClientPlayer" parent="." unique_id=243254048 instance=ExtResource("1_x35hh")]
 position = Vector2(564, 234)
