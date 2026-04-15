@@ -96,6 +96,10 @@ Start={
 ]
 }
 
+[network]
+
+rollback/classes/message_serializer="uid://qasp1oo0aj1g"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

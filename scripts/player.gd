@@ -8,7 +8,7 @@ extends Node2D
 @export var is_Grabbing : bool = false
 
 func _get_local_input() -> Dictionary:
-	var input_vector = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_vector = Input.get_vector("Left", "Right", "Up", "Down")
 	
 	var input := {}
 	if input_vector != Vector2.ZERO:

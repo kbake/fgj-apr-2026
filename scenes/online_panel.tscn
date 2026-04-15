@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfvf1yu2hyq0p"]
 
-[ext_resource type="Script" uid="uid://lpbbsnaxu88r" path="res://scenes/online_panel.gd" id="1_h1jhj"]
+[ext_resource type="Script" uid="uid://lpbbsnaxu88r" path="res://scripts/online_panel.gd" id="1_h1jhj"]
 
 [node name="OnlinePanel" type="Node2D" unique_id=1416696677]
 script = ExtResource("1_h1jhj")
