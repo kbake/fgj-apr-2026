@@ -99,6 +99,8 @@ Start={
 [network]
 
 rollback/classes/message_serializer="uid://qasp1oo0aj1g"
+rollback/debug/rollback_ticks=4
+rollback/debug/random_rollback_ticks=10
 
 [physics]
 
