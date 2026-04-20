@@ -74,11 +74,17 @@ func _on_reset_button_pressed() -> void:
 func _on_SyncManager_sync_started() -> void:
 	message_label.text = "Started!"
 
-	if logging_enabled:
+	if logging_enabled and not SyncReplay.active:
 		var _dir = DirAccess.make_dir_absolute(LOG_FILE_DIRECTORY)
 
-		var log_file_name = "%s-peer-%d.log" % [
-			Time.get_datetime_string_from_system(true),
+		var datetime: Dictionary = Time.get_datetime_dict_from_system(true)
+		var log_file_name = "%04d%02d%02d-%02d%02d%02d-peer-%d.log" % [
+			datetime['year'],
+			datetime['month'],
+			datetime['day'],
+			datetime['hour'],
+			datetime['minute'],
+			datetime['second'],
 			get_tree().get_multiplayer().get_unique_id()
 		]
 		SyncManager.start_logging(LOG_FILE_DIRECTORY + '/' + log_file_name)
