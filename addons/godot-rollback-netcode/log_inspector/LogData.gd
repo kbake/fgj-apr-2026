@@ -1,7 +1,7 @@
 @tool
 extends RefCounted
 
-const Logger = preload("res://addons/godot-rollback-netcode/Logger.gd")
+const RollbackLogger = preload("res://addons/godot-rollback-netcode/Logger.gd")
 
 class StateData:
 	var tick: int
@@ -167,7 +167,7 @@ func _loader_thread_function(input: Array) -> void:
 			continue
 
 		if header == null:
-			if data['log_type'] == Logger.LogType.HEADER:
+			if data['log_type'] == RollbackLogger.LogType.HEADER:
 				header = data
 
 				header['peer_id'] = int(header['peer_id'])
@@ -218,7 +218,7 @@ func _add_log_entry(log_entry: Dictionary, peer_id: int) -> void:
 	max_tick = int(max(max_tick, tick))
 
 	match log_entry['log_type'] as int:
-		Logger.LogType.INPUT:
+		RollbackLogger.LogType.INPUT:
 			var input_data: InputData
 			if not input.has(tick):
 				input_data = InputData.new(tick, log_entry['input'])
@@ -228,7 +228,7 @@ func _add_log_entry(log_entry: Dictionary, peer_id: int) -> void:
 				if not input_data.compare_input(peer_id, log_entry['input']) and not tick in mismatches:
 					mismatches.append(tick)
 
-		Logger.LogType.STATE:
+		RollbackLogger.LogType.STATE:
 			var state_data: StateData
 			if not state.has(tick):
 				state_data = StateData.new(tick, log_entry['state'])
@@ -238,7 +238,7 @@ func _add_log_entry(log_entry: Dictionary, peer_id: int) -> void:
 				if not state_data.compare_state(peer_id, log_entry['state']) and not tick in mismatches:
 					mismatches.append(tick)
 
-		Logger.LogType.FRAME:
+		RollbackLogger.LogType.FRAME:
 			log_entry.erase('log_type')
 			var frame_number = frame_counter[peer_id]
 			var frame_data := FrameData.new(frame_number, log_entry['frame_type'], log_entry)

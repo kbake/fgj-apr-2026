@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-const Logger = preload("res://addons/godot-rollback-netcode/Logger.gd")
+const RollbackLogger = preload("res://addons/godot-rollback-netcode/Logger.gd")
 const ReplayServer = preload("res://addons/godot-rollback-netcode/log_inspector/ReplayServer.gd")
 const LogData = preload("res://addons/godot-rollback-netcode/log_inspector/LogData.gd")
 
@@ -167,7 +167,7 @@ func replay_to_current_frame() -> void:
 		if frame_id > current_frame_id:
 			break
 		var frame_data: LogData.FrameData = log_data.get_frame(replay_peer_id, frame_id)
-		if frame_data.type == Logger.FrameType.TICK and frame_data.data.get('skipped', false):
+		if frame_data.type == RollbackLogger.FrameType.TICK and frame_data.data.get('skipped', false):
 			# Don't replay skipped ticks.
 			continue
 		_send_replay_frame_data(frame_data)
@@ -185,7 +185,7 @@ func _send_replay_frame_data(frame_data: LogData.FrameData) -> void:
 
 	var input_frames_received := {}
 
-	if frame_type == Logger.FrameType.TICK:
+	if frame_type == RollbackLogger.FrameType.TICK:
 		var tick = int(frame_data.data['tick'])
 		if tick > 0:
 			# Get input for local peer.
@@ -193,7 +193,7 @@ func _send_replay_frame_data(frame_data: LogData.FrameData) -> void:
 				tick: log_data.input[tick].get_input_for_peer(replay_peer_id, replay_peer_id),
 			}
 		replay_last_interpolation_frame_time = frame_data.data['end_time']
-	elif frame_type == Logger.FrameType.INTERPOLATION_FRAME:
+	elif frame_type == RollbackLogger.FrameType.INTERPOLATION_FRAME:
 		var start_time = frame_data.data['start_time']
 		if replay_last_interpolation_frame_time > 0:
 			msg['delta'] = (start_time - replay_last_interpolation_frame_time) / 1000.0

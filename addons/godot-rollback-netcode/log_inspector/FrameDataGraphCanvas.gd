@@ -1,7 +1,7 @@
 @tool
 extends Control
 
-const Logger = preload("res://addons/godot-rollback-netcode/Logger.gd")
+const RollbackLogger = preload("res://addons/godot-rollback-netcode/Logger.gd")
 const LogData = preload("res://addons/godot-rollback-netcode/log_inspector/LogData.gd")
 
 var start_time := 0: set = set_start_time
@@ -14,9 +14,9 @@ var show_rollback_ticks := true
 var max_rollback_ticks := 15
 
 const FRAME_TYPE_COLOR = {
-	Logger.FrameType.INTERFRAME: Color(0.3, 0.3, 0.3),
-	Logger.FrameType.TICK: Color(0.0, 0.75, 0.0),
-	Logger.FrameType.INTERPOLATION_FRAME: Color(0.0, 0.0, 0.5),
+	RollbackLogger.FrameType.INTERFRAME: Color(0.3, 0.3, 0.3),
+	RollbackLogger.FrameType.TICK: Color(0.0, 0.75, 0.0),
+	RollbackLogger.FrameType.INTERPOLATION_FRAME: Color(0.0, 0.0, 0.5),
 }
 
 const ROLLBACK_LINE_COLOR := Color(1.0, 0.5, 0.0)
@@ -141,11 +141,11 @@ func _draw_peer(peer_id: int, peer_rect: Rect2, draw_data: Dictionary) -> void:
 				if frame.data.has('skip_reason'):
 					var tick_letter: String = ''
 					match int(frame.data['skip_reason']):
-						Logger.SkipReason.INPUT_BUFFER_UNDERRUN:
+						RollbackLogger.SkipReason.INPUT_BUFFER_UNDERRUN:
 							tick_letter = 'B'
-						Logger.SkipReason.WAITING_TO_REGAIN_SYNC:
+						RollbackLogger.SkipReason.WAITING_TO_REGAIN_SYNC:
 							tick_letter = 'W'
-						Logger.SkipReason.ADVANTAGE_ADJUSTMENT:
+						RollbackLogger.SkipReason.ADVANTAGE_ADJUSTMENT:
 							tick_letter = 'A'
 					if tick_letter != '':
 						tick_numbers_to_draw.append([32, center_position - Vector2(5, 0), tick_letter, Color('f04dff')])
@@ -154,7 +154,7 @@ func _draw_peer(peer_id: int, peer_rect: Rect2, draw_data: Dictionary) -> void:
 
 			draw_rect(frame_rect, frame_color)
 
-			if frame.type == Logger.FrameType.TICK and frame.data.has('tick') and not skipped:
+			if frame.type == RollbackLogger.FrameType.TICK and frame.data.has('tick') and not skipped:
 				var tick: int = frame.data['tick']
 				tick_numbers_to_draw.append([16, center_position - Vector2(3, 0), str(tick), Color(1.0, 1.0, 1.0)])
 				if frame.data.has('input_tick') and capture_network_arrow_positions:
